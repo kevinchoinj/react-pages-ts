@@ -9,7 +9,6 @@ type TrackMouseProps = {
 const TrackMouse: React.FC<TrackMouseProps> = ({getMousePosition}) => {
   return(
     <div
-      className="wrapper"
       onMouseMove={(e) => getMousePosition(e)}
     />
   );

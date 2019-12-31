@@ -4,13 +4,23 @@ import {
   SET_SKEW,
 } from 'actions/scroll';
 
-const DEFAULT_STATE={
+interface IScrollState {
+  scrollAmount: number,
+  scrollPercent: number,
+  skew: number,
+}
+const DEFAULT_STATE: IScrollState = {
   scrollAmount: 0,
   scrollPercent: 0,
   skew: 0
 };
+type PayloadActionTypes = { 
+  type: symbol,
+  scrollAmount: number,
+  payload: number,
+ };
 
-export default(state=DEFAULT_STATE, payload)=>
+export default(state=DEFAULT_STATE, payload: PayloadActionTypes)=>
 {
   switch(payload.type){
   case CHECK_SCROLL:

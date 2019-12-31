@@ -2,11 +2,19 @@ import {
   TOGGLE_NOTIFICATION,
 } from 'actions/notifications';
 
-const DEFAULT_STATE={
+interface INotificationState {
+  notificationDisplay: boolean,
+}
+const DEFAULT_STATE: INotificationState = {
   notificationDisplay: true,
 };
 
-export default(state=DEFAULT_STATE, payload)=>
+type PayloadActionTypes = { 
+  type: symbol,
+  value: boolean,
+ };
+
+export default(state=DEFAULT_STATE, payload: PayloadActionTypes)=>
 {
   switch(payload.type){
   case TOGGLE_NOTIFICATION:

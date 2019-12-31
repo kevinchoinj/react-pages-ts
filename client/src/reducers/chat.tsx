@@ -4,12 +4,21 @@ import {
   USER_HAS_DISCONNECTED,
 } from 'actions/chat';
 
-const DEFAULT_STATE={
+interface IChatState {
+  messages: string[],
+  userActivity: string[],
+}
+const DEFAULT_STATE: IChatState = {
   messages: [],
   userActivity: [],
 };
 
-export default(state=DEFAULT_STATE, payload)=>
+type PayloadActionTypes = { 
+  type: symbol,
+  message: string,
+ };
+
+export default(state=DEFAULT_STATE, payload: PayloadActionTypes)=>
 {
   switch(payload.type){
   case RECEIVE_MESSAGE:
@@ -20,12 +29,12 @@ export default(state=DEFAULT_STATE, payload)=>
   case USER_HAS_CONNECTED:
     return state = {
       ...state,
-      userActivity: state.userActivity.concat('User has connected.'),
+      userActivity: state.userActivity.concat("User has connected."),
     };
   case USER_HAS_DISCONNECTED:
     return state = {
       ...state,
-      userActivity: state.userActivity.concat('User has disconnected'),
+      userActivity: state.userActivity.concat("User has disconnected"),
     };
   default:
     return state;

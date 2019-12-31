@@ -3,12 +3,23 @@ import {
   TOGGLE_MAIN_MENU,
 } from 'actions/menu';
 
-const DEFAULT_STATE={
+interface IMenuState {
+  menuDisplay: any,
+  mainMenuDisplay: boolean,
+}
+
+const DEFAULT_STATE: IMenuState = {
   menuDisplay: null,
   mainMenuDisplay: false,
 };
 
-export default(state=DEFAULT_STATE, payload)=>
+type PayloadActionTypes = { 
+  type: symbol,
+  menuDisplay: boolean,
+  mainMenuDisplay: boolean,
+ };
+
+export default(state=DEFAULT_STATE, payload: PayloadActionTypes)=>
 {
   switch(payload.type){
   case TOGGLE_MENU:

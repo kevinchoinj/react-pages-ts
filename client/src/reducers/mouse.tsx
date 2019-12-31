@@ -5,14 +5,31 @@ import {
   HOVER_IMAGE,
 } from 'actions/mouse';
 
-const DEFAULT_STATE={
+type MousePositionProps = {
+  xValue: number, 
+  yValue: number,
+}
+interface IMouseState {
+  mousePosition: MousePositionProps
+  boundMousePosition: MousePositionProps,
+  hoveredImage: string | boolean,
+  isMobile: boolean,
+}
+const DEFAULT_STATE: IMouseState = {
   mousePosition: {xValue: 0, yValue: 0},
   boundMousePosition: {xValue: 0, yValue: 0},
   hoveredImage: false,
   isMobile: true,
 };
+type PayloadActionTypes = { 
+  type: symbol,
+  xValue: number,
+  yValue: number,
+  payload: boolean,
+  image: string | boolean,
+ };
 
-export default(state=DEFAULT_STATE, payload)=>
+export default(state=DEFAULT_STATE, payload: PayloadActionTypes)=>
 {
   switch(payload.type){
 

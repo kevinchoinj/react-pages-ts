@@ -4,7 +4,7 @@ import DisplayCoordinates from '../components/DisplayCoordinates';
 
 const Home = () => {
   return (
-    <div className="page_one">
+    <div>
       <TrackBoundMouse/>
       <DisplayCoordinates/>
     </div>
