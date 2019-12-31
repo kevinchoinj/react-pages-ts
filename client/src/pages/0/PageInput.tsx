@@ -18,15 +18,18 @@ const StyledSelect = styled.select`
 
 const PAGE_SIZE = 8;
 const pageCount = Math.ceil(menuValues.length / PAGE_SIZE);
-const createArray = (pageCount) => {
+const createArray = (pageCount: number) => {
   let arr = [];
   for(var i = 1; i <= pageCount; i++){
     arr.push(i);
   }
   return arr;
 }
+type PageInputProps = { 
+  pageId: number,
+ };
 
-const PageInput = ({pageId}) => {
+const PageInput: React.FC<PageInputProps> = ({pageId}) => {
   return (
     <form>
       <StyledSelect

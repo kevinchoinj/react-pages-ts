@@ -13,11 +13,17 @@ const StyledText = styled.div`
   font-size: 17px;
   pointer-events: none;
 `;
-const DisplayCoordinates  = props => {
-  const {
-    mousePosition,
-    boundMousePosition,
-  } = props;
+
+type MousePositionProps = {
+  xValue: Number,
+  yValue: Number,
+}
+type DisplayCoordinatesProps = { 
+  mousePosition: MousePositionProps,
+  boundMousePosition: MousePositionProps,
+ };
+
+const DisplayCoordinates: React.FC<DisplayCoordinatesProps>  = ({mousePosition, boundMousePosition}) => {
   return(
     <StyledText>
       {mousePosition.xValue}, {mousePosition.yValue}
@@ -27,7 +33,7 @@ const DisplayCoordinates  = props => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: Object) => {
   return {
     mousePosition: selectCurrentMousePosition(state),
     boundMousePosition: selectBoundMousePosition(state),

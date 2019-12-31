@@ -14,7 +14,7 @@ const StyledButtons = styled.div`
     text-decoration: none;
   }
 `;
-const StyledButton = styled.div`
+const StyledButton = styled.div<{disabled?: boolean}>`
   padding: 6px;
   transition: .2s ease;
   color: ${props => props.disabled ? '#aaa' : '#fff'};
@@ -70,7 +70,12 @@ const StyledImageWrapper = styled.div`
     }
   }
 `;
-const LinkOrDiv = ({text, href}) => {
+type LinkOrDivProps = { 
+  text: string,
+  href: any,
+ };
+
+const LinkOrDiv: React.FC<LinkOrDivProps> = ({text, href}) => {
   return href ? (
     <Link to={href}>
       <StyledButton>
@@ -86,14 +91,30 @@ const LinkOrDiv = ({text, href}) => {
   )
 }
 
-const paginate = (array, page_size, page_number) => {
+const paginate = (array: any, page_size: number, page_number: number) => {
   --page_number;
   return array.slice(page_number * page_size, (page_number + 1) * page_size);
 };
 
 const PAGE_SIZE = 8;
 
-const IndexPage = ({match}) => {
+type IdProps = {
+  id: string,
+}
+type MatchProps = { 
+  params: IdProps,
+ };
+type IndexPageProps = { 
+  match: MatchProps,
+ };
+
+ interface IDisplayValues {
+  text: string,
+  link: string,
+  imageSrc: string,
+ }
+
+const IndexPage: React.FC<IndexPageProps> = ({match}) => {
   const [pageId, setPageId] = useState(1);
   useEffect(() => {
     if (match.params.id) {
@@ -122,7 +143,7 @@ const IndexPage = ({match}) => {
         <PageInput pageId={pageId}/>
       </StyledButtons>
       <StyledContainer>
-        {displayValues.map((value)=> (
+        {displayValues.map((value: IDisplayValues)=> (
           <StyledImageWrapper key={value.text}>
             <StyledTitle>
               {value.text}
